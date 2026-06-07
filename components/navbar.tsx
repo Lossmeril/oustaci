@@ -9,6 +9,7 @@ import { Dialog, DialogPanel } from "@headlessui/react";
 import Button from "./button";
 import { NavigationItem } from "@/data/navbarItems";
 import { BsList, BsXCircle } from "react-icons/bs";
+import { FaInstagram } from "react-icons/fa6";
 
 interface NavbarProps {
   items: NavigationItem[];
@@ -25,7 +26,7 @@ const NavbarDesktop: React.FC<NavbarProps> = ({ items }) => {
       {/* ------ DESKTOP MENU */}
       <nav
         aria-label="Global"
-        className="flex items-center justify-between p-6 lg:px-20 bg-blue shadow-2xs h-20"
+        className="flex items-center justify-between p-6 lg:px-20 bg-brand-blue shadow-2xs h-20"
       >
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
@@ -61,8 +62,14 @@ const NavbarDesktop: React.FC<NavbarProps> = ({ items }) => {
             </a>
           ))}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-4">
           <Button label={buttonText} href={buttonHref} inverted />
+          <Button
+            label={<FaInstagram className="text-2xl" />}
+            href="https://instagram.com/snk_oustaci"
+            secondary
+            square
+          />
         </div>
       </nav>
 
@@ -75,7 +82,7 @@ const NavbarDesktop: React.FC<NavbarProps> = ({ items }) => {
       >
         <div className="fixed inset-0 z-50" />
         <DialogPanel
-          className={`fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-blue sm:max-w-sm sm:ring-1 sm:ring-light/10 transition-all duration-300 ease-in-out transform ${
+          className={`fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-brand-blue sm:max-w-sm sm:ring-1 sm:ring-light/10 transition-all duration-300 ease-in-out transform ${
             mobileMenuOpen
               ? "translate-x-0 opacity-100"
               : "translate-x-full opacity-0"
@@ -115,8 +122,14 @@ const NavbarDesktop: React.FC<NavbarProps> = ({ items }) => {
                   </a>
                 ))}
               </div>
-              <div className="py-6">
+              <div className="py-6 flex items-center gap-4">
                 <Button label={buttonText} href={buttonHref} inverted />
+                <Button
+                  label={<FaInstagram className="text-2xl" />}
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSdRK83pHflV8yfYP3__MVDzT0ZhSuXaqsXgP8CXfkPoTkrxYw/viewform?usp=sharing&ouid=101347946524896647180"
+                  secondary
+                  square
+                />
               </div>
             </div>
           </div>
