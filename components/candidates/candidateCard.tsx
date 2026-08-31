@@ -25,7 +25,7 @@ const CandidateCard = ({ candidate, onSelect, ref }: CandidateCardProps) => {
       className="group relative block w-full pb-8 text-left transition-transform duration-300 ease-out will-change-transform focus:outline-none hover:cursor-pointer motion-reduce:transition-none"
     >
       {/* Photo box – raises on hover / keyboard focus */}
-      <div className="relative aspect-3/4 overflow-hidden rounded-3xl bg-brand-blue/10 shadow-md transition duration-300 ease-out group-hover:-translate-y-3 group-hover:shadow-lg group-focus-visible:-translate-y-3 group-focus-visible:ring-4 group-focus-visible:ring-brand-blue/40 border border-gray-200">
+      <div className="relative aspect-3/4 overflow-hidden rounded-2xl bg-brand-blue/10 shadow-md transition duration-300 ease-out group-hover:-translate-y-3 group-hover:shadow-lg group-focus-visible:-translate-y-3 group-focus-visible:ring-4 group-focus-visible:ring-brand-blue/40 border border-gray-200">
         <CandidatePhoto
           src={candidate.photo}
           name={candidate.name}
@@ -43,7 +43,7 @@ const CandidateCard = ({ candidate, onSelect, ref }: CandidateCardProps) => {
         className="absolute inset-x-3 bottom-2 origin-center transition-transform duration-300 group-hover:-translate-y-1 group-hover:rotate-0"
         style={{ rotate: `${tiltFor(candidate.number)}deg` }}
       >
-        <div className="rounded-2xl bg-white px-4 py-3 shadow-xl ring-1 ring-black/5">
+        <div className="rounded-xl bg-white px-4 py-3 shadow-xl ring-1 ring-black/5">
           <p className="font-extrabold leading-tight text-brand-blue">
             {candidate.name}
           </p>
