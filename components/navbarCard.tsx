@@ -3,7 +3,7 @@ import Button from "./button";
 
 const NavbarCard = () => {
   return (
-    <div className="relative bg-brand-blue w-full grid text-left p-8 lg:p-20 rounded-2xl text-white shadow-lg overflow-hidden">
+    <div className="relative bg-brand-blue bg-blend-multiply w-full grid text-left p-8 lg:p-20 rounded-2xl text-white shadow-lg overflow-hidden">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/img/razitko_white.png"
@@ -15,7 +15,9 @@ const NavbarCard = () => {
         <p className="text-brand-red bg-white rounded-full w-fit px-4 py-1 mb-2 text-sm font-extrabold">
           Setkání s veřejností
         </p>
-        <h2 className="text-3xl lg:text-5xl font-bold uppercase">Oušťáci otevřeně</h2>
+        <h2 className="text-3xl lg:text-5xl font-bold uppercase">
+          Oušťáci otevřeně
+        </h2>
         <p className="text-white mb-4 text-balance">
           Přijďte s námi diskutovat o nastaveném směru, rozvoji a o budoucnosti
           města Ústí nad Orlicí. Tématem bude otevřená diskuze nad otázkami jako

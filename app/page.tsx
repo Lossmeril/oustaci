@@ -1,4 +1,5 @@
 import Button from "@/components/button";
+import CandidatesSection from "@/components/candidates/candidatesSection";
 import { Container } from "@/components/layout/container";
 import NavbarCard from "@/components/navbarCard";
 import { FaInstagram } from "react-icons/fa6";
@@ -73,6 +74,8 @@ const HomePage = () => {
           </div>
         </Container>
       </div>
+
+      <CandidatesSection />
     </main>
   );
 };
