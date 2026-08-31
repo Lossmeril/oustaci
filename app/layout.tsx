@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${poppins.variable} ${plusJakartaSans.variable} h-full antialiased`}
+      className={`${poppins.variable} ${plusJakartaSans.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full max-w-screen overflow-x-hidden flex flex-col">
         <NavbarDesktop items={navigationItems} />
