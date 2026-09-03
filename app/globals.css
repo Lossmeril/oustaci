@@ -3,7 +3,7 @@
 :root {
   --white: #ffffff;
   --dark: #1a1a1a;
-  --brand-blue: #0152a4;
+  --brand-blue: #3488dd;
   --brand-red: #ed1e27;
 }
 
@@ -12,25 +12,59 @@
   --color-dark: var(--dark);
   --color-brand-blue: var(--brand-blue);
   --color-brand-red: var(--brand-red);
+
+  /* Poppins – the heading typeface, exposed as a utility for the rare
+     non-heading element that needs display type (e.g. the campaign slogan). */
+  --font-display: var(--font-poppins);
 }
 
-body {
-  background: var(--color-white);
-  color: var(--color-dark);
-  font-family: "Plus Jakarta Sans", Arial, Helvetica, sans-serif;
+/* In @layer base so component-level utilities can override these defaults. */
+@layer base {
+  body {
+    background: var(--color-white);
+    color: var(--color-dark);
+    font-family: "Plus Jakarta Sans", Arial, Helvetica, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
+  }
+
+  em {
+    color: var(--color-brand-blue);
+    font-style: normal;
+    font-weight: 900;
+  }
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
-}
-
-em {
-  color: var(--color-brand-blue);
-  font-style: normal;
-  font-weight: 900;
+@layer components {
+  /* On the blue sections, emphasised words sit in a little white chip – the
+     same white-card language as the candidate name plates and the claim,
+     down to a slight quasi-random tilt (cycled by position). */
+  .section-blue em {
+    display: inline-block;
+    background-color: var(--color-white);
+    color: var(--color-brand-blue);
+    padding: 0.08em 0.4em;
+    border-radius: 0.4em;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.12);
+    rotate: -2deg;
+  }
+  .section-blue em:nth-of-type(5n + 2) {
+    rotate: 1.5deg;
+  }
+  .section-blue em:nth-of-type(5n + 3) {
+    rotate: -1deg;
+  }
+  .section-blue em:nth-of-type(5n + 4) {
+    rotate: 2.5deg;
+  }
+  .section-blue em:nth-of-type(5n) {
+    rotate: -3deg;
+  }
 }

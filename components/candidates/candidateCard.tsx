@@ -27,7 +27,7 @@ const CandidateCard = ({ candidate, onSelect, ref }: CandidateCardProps) => {
       {/* Photo box – raises on hover / keyboard focus */}
       <div className="relative aspect-3/4 overflow-hidden rounded-2xl bg-brand-blue/10 shadow-md transition duration-300 ease-out group-hover:-translate-y-3 group-hover:shadow-lg group-focus-visible:-translate-y-3 group-focus-visible:ring-4 group-focus-visible:ring-brand-blue/40 border border-gray-200">
         <CandidatePhoto
-          src={candidate.photo}
+          src={candidate.photo.trim() !== "" ? candidate.photo : undefined}
           name={candidate.name}
           fallbackClassName="text-5xl"
         />

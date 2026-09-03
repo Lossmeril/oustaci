@@ -1,3 +1,4 @@
+import AboutSection from "@/components/aboutSection";
 import Button from "@/components/button";
 import CandidatesSection from "@/components/candidates/candidatesSection";
 import { Container } from "@/components/layout/container";
@@ -21,6 +22,8 @@ const HomePage = () => {
 
         {/* Decorative slanted visual along the bottom edge – three blend layers
             over the hero image, split from the content by a pure white line.
+            The tinted band then dissolves into flat brand-blue so the hero
+            runs seamlessly into the blue "O nás" section.
             --band: height on the tall (right) side, --slant: extra drop on the
             left, --line: thickness of the white divider. */}
         <div className="pointer-events-none absolute inset-0 z-[-1] [--band:8rem] [--line:3px] [--slant:2.5rem] sm:[--band:12rem] lg:[--band:20rem] lg:[--line:20px] lg:[--slant:8rem]">
@@ -53,12 +56,16 @@ const HomePage = () => {
             <div className="absolute inset-0 bg-brand-blue mix-blend-multiply" />
             {/* 3 – brand blue at ~65% → softens the whole thing */}
             <div className="absolute inset-0 bg-brand-blue/65" />
+            {/* 4 – flat brand blue over the band region, ramping from clear
+                just below the white line to solid at the edge, so the tinted
+                image dissolves into the flat blue of the section below */}
+            <div className="absolute inset-x-0 bottom-0 h-[calc(var(--band)+var(--slant))] bg-brand-blue mask-[linear-gradient(to_bottom,transparent,transparent_30%,#000_85%)]" />
           </div>
         </div>
 
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 w-full items-center gap-8 lg:gap-12">
-            <div className="w-full flex flex-col items-start justify-center">
+            <div className="w-full h-full flex flex-col items-start justify-center">
               <h1 className="text-brand-blue font-extrabold text-[8rem] tracking-tight sr-only">
                 Oušťáci - Sdružení nezávislých kandidátů
               </h1>
@@ -71,10 +78,10 @@ const HomePage = () => {
 
               <div className="text-black mb-6 lg:mb-8 text-balance space-y-4 text-base lg:text-lg leading-relaxed">
                 <p>
-                  <em>Sdružení nezávislých kandidátů Oušťáci</em> vede naše
-                  město už 16&nbsp;let. Pro letošní říjnové komunální volby
-                  přicházíme s <em>omlazenou kandidátkou</em>, která spojuje
-                  dosavadní zkušenosti s novou energií.
+                  <em>Sdružení nezávislých kandidátů Oušťáci</em>{" "}
+                  vede naše město už 16&nbsp;let. Pro letošní říjnové komunální
+                  volby přicházíme s&nbsp;<em>omlazenou kandidátkou</em>, která
+                  spojuje dosavadní zkušenosti s&nbsp;novou energií.
                 </p>
                 <p>Kompletní volební program zveřejníme již brzy.</p>
               </div>
@@ -91,10 +98,12 @@ const HomePage = () => {
                 />
               </div>
             </div>
-            <NavbarCard />
+            {/* <NavbarCard /> */}
           </div>
         </Container>
       </div>
+
+      <AboutSection />
 
       <CandidatesSection />
     </main>
