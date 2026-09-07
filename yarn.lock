@@ -3316,6 +3316,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lucide-react@npm:^1.42.0":
+  version: 1.42.0
+  resolution: "lucide-react@npm:1.42.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/3d6ed3416e85937fc15fda2af926a3505bb0205038fdadf48beb43b4c6546a85f8d24fda3a4431acd78cdc1028075a8c75b86fbe495d40b46a8e812f245922d5
+  languageName: node
+  linkType: hard
+
 "magic-string@npm:^0.30.21":
   version: 0.30.21
   resolution: "magic-string@npm:0.30.21"
@@ -3592,10 +3601,12 @@ __metadata:
     "@types/react-dom": "npm:^19"
     eslint: "npm:^9"
     eslint-config-next: "npm:16.2.6"
+    lucide-react: "npm:^1.42.0"
     next: "npm:16.2.6"
     react: "npm:19.2.4"
     react-dom: "npm:19.2.4"
     react-icons: "npm:^5.6.0"
+    react-pageflip: "npm:^2.0.3"
     tailwindcss: "npm:^4"
     typescript: "npm:^5"
   languageName: unknown
@@ -3627,6 +3638,13 @@ __metadata:
   dependencies:
     p-limit: "npm:^3.0.2"
   checksum: 10c0/2290d627ab7903b8b70d11d384fee714b797f6040d9278932754a6860845c4d3190603a0772a663c8cb5a7b21d1b16acb3a6487ebcafa9773094edc3dfe6009a
+  languageName: node
+  linkType: hard
+
+"page-flip@npm:latest":
+  version: 2.0.7
+  resolution: "page-flip@npm:2.0.7"
+  checksum: 10c0/bc3538ae85679356c263d2a8e50f6338c2769511825d6112da8958e8f2eef8e29ae8d6cbd7f664af08dad4d86727ffe9dc09d72783182097f69eea3edf4012d5
   languageName: node
   linkType: hard
 
@@ -3786,6 +3804,15 @@ __metadata:
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: 10c0/33977da7a5f1a287936a0c85639fec6ca74f4f15ef1e59a6bc20338fc73dc69555381e211f7a3529b8150a1f71e4225525b41b60b52965bda53ce7d47377ada1
+  languageName: node
+  linkType: hard
+
+"react-pageflip@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "react-pageflip@npm:2.0.3"
+  dependencies:
+    page-flip: "npm:latest"
+  checksum: 10c0/e92e35e967786fc7d62694b6cea042fcd73b697faa8474ed03cf7ee1360bc999c6e0ab29b61f11d403382e47464b62bbc20ec332b6c33e4b803ad491135a6506
   languageName: node
   linkType: hard
 

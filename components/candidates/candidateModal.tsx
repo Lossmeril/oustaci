@@ -54,7 +54,7 @@ const CandidateModal: React.FC<CandidateModalProps> = ({
               </div>
 
               {/* Skewed text card, overlapping the photo */}
-              <div className="z-10 -mt-8 w-[92%] -rotate-2 sm:-ml-12 sm:mt-10 sm:w-auto sm:flex-1">
+              <div className="z-10 -mt-8 w-[92%] -rotate-2 sm:-ml-2 sm:mt-20 sm:w-auto sm:flex-1">
                 <div className="max-h-[70vh] overflow-y-auto rounded-3xl bg-white p-6 shadow-2xl ring-1 ring-black/5 sm:p-8">
                   <DialogTitle className="text-2xl font-bold text-brand-blue sm:text-3xl">
                     {candidate.name}

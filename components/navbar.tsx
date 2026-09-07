@@ -7,9 +7,9 @@ import Link from "next/link";
 import { Dialog, DialogPanel } from "@headlessui/react";
 
 import Button from "./button";
+import SocialButtons from "./socialButtons";
 import { NavigationItem } from "@/data/navbarItems";
 import { BsList, BsXCircle } from "react-icons/bs";
-import { FaInstagram } from "react-icons/fa6";
 
 interface NavbarProps {
   items: NavigationItem[];
@@ -64,12 +64,7 @@ const NavbarDesktop: React.FC<NavbarProps> = ({ items }) => {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-4">
           <Button label={buttonText} href={buttonHref} inverted />
-          <Button
-            label={<FaInstagram className="text-2xl" />}
-            href="https://instagram.com/snk_oustaci"
-            secondary
-            square
-          />
+          <SocialButtons />
         </div>
       </nav>
 
@@ -124,12 +119,7 @@ const NavbarDesktop: React.FC<NavbarProps> = ({ items }) => {
               </div>
               <div className="py-6 flex items-center gap-4">
                 <Button label={buttonText} href={buttonHref} inverted />
-                <Button
-                  label={<FaInstagram className="text-2xl" />}
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSdRK83pHflV8yfYP3__MVDzT0ZhSuXaqsXgP8CXfkPoTkrxYw/viewform?usp=sharing&ouid=101347946524896647180"
-                  secondary
-                  square
-                />
+                <SocialButtons />
               </div>
             </div>
           </div>

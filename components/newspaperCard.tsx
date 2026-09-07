@@ -1,4 +1,5 @@
 import Button from "./button";
+import Image from "next/image";
 
 // White counterpart to <NavbarCard /> – same card language (rounded, shadow,
 // pill eyebrow, watermark, arrow button) but inverted to white with blue text.
@@ -25,16 +26,16 @@ const NewspaperCard = () => {
           jak je chceme prosadit.
         </p>
 
-        {/* Newspaper mock-up goes here later. */}
-        <div
-          aria-hidden
-          className="my-2 flex aspect-4/3 w-full items-center justify-center rounded-xl bg-brand-blue/5 text-sm font-medium text-brand-blue/30 ring-1 ring-inset ring-brand-blue/10"
-        >
-          Volební noviny
-        </div>
+        <Image
+          src="/img/noviny.webp"
+          alt="Volební noviny"
+          width={600}
+          height={400}
+          className="hover:-rotate-2 hover:scale-105 transition-transform duration-300 ease-in-out"
+        />
 
         <div className="flex justify-start">
-          <Button label="Prolistovat volební noviny" href="#program" />
+          <Button label="Prolistovat volební noviny" href="#noviny" />
         </div>
       </div>
     </div>
