@@ -34,7 +34,8 @@ const NewspaperCard = () => {
           className="hover:-rotate-2 hover:scale-105 transition-transform duration-300 ease-in-out"
         />
 
-        <div className="flex justify-start">
+        <div className="flex justify-start gap-4 mt-4">
+          <Button label="Volební program" href="#program" secondary />
           <Button label="Prolistovat volební noviny" href="#noviny" />
         </div>
       </div>

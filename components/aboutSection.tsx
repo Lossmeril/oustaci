@@ -59,16 +59,6 @@ const AboutSection = () => {
                 nad&nbsp;Orlicí naše <em>srdcovka</em> a&nbsp;stále dané sliby
                 plníme.
               </p>
-
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Button label="Naši kandidáti" href="#kandidati" inverted />
-                <Button
-                  label="Volební program"
-                  href="#program"
-                  secondary
-                  inverted
-                />
-              </div>
             </div>
           </div>
 
