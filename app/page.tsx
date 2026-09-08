@@ -14,7 +14,7 @@ const HomePage = () => {
         <div className="w-full h-full absolute top-0 left-0 pointer-events-none -z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/img/skupina 9.jpg"
+            src="/img/skupina 9.webp"
             alt="Hero"
             className="w-full h-full object-cover opacity-50 object-top"
           />
@@ -48,7 +48,7 @@ const HomePage = () => {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/img/skupina 9.jpg"
+              src="/img/skupina 9.webp"
               alt=""
               className="absolute inset-0 h-full w-full object-cover object-top"
             />
@@ -122,7 +122,7 @@ const HomePage = () => {
               <figure className="z-0 absolute left-1/2 -translate-x-1/2 top-1/3 lg:translate-x-0 lg:top-1/2 -translate-y-1/2 scale-135 rotate-7 rounded-sm bg-white p-3 pb-12 shadow-2xl ring-1 ring-black/5 transition-transform duration-300 motion-reduce:transition-none sm:p-4 sm:pb-16">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/img/skupina 9.jpg"
+                  src="/img/skupina 9.webp"
                   alt="Kandidáti SNK Oušťáci"
                   className="block aspect-4/3 w-full max-w-md object-cover object-top sm:max-w-lg"
                 />
