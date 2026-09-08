@@ -20,7 +20,7 @@ export const socialLinks: SocialLink[] = [
   },
   {
     name: "Facebook",
-    href: "", // ← doplňte odkaz na facebookovou stránku
+    href: "https://www.facebook.com/Oustaci.cz/", // ← doplňte odkaz na facebookovou stránku
     Icon: FaFacebookF,
   },
 ];

@@ -35,20 +35,64 @@ interface NewspaperFlipbookProps {
   pdfHref: string | null;
 }
 
+const SWIPE_THRESHOLD = 40;
+
+/** Left-hand page index of the spread that page `i` sits in (0 = lone cover). */
+const spreadLeft = (i: number) => (i <= 0 ? 0 : i % 2 === 1 ? i : i - 1);
+
 const NewspaperFlipbook = ({ pages, pdfHref }: NewspaperFlipbookProps) => {
   const bookRef = useRef<FlipBookInstance>(null);
   const [page, setPage] = useState(0);
-  const [zoomSrc, setZoomSrc] = useState<string | null>(null);
+  // Index of the page shown in the zoom lightbox, or null when it's closed.
+  const [zoomIndex, setZoomIndex] = useState<number | null>(null);
+  const touchStartX = useRef<number | null>(null);
   // Only mount the flip engine on the client: react-pageflip mutates the DOM on
   // init, so we render the static fallback for SSR / no-JS and swap in on mount.
   const [mounted, setMounted] = useState(false);
   // eslint-disable-next-line react-hooks/set-state-in-effect -- deliberate client-only gate
   useEffect(() => setMounted(true), []);
 
+  const zoomOpen = zoomIndex !== null;
+
+  // Move the lightbox one spread forward (1) or back (-1). The cover is a lone
+  // spread; every other spread is a left/right pair.
+  const stepZoom = (dir: -1 | 1) =>
+    setZoomIndex((cur) => {
+      if (cur === null) return cur;
+      const left = spreadLeft(cur);
+      if (dir === 1) {
+        const next = left === 0 ? 1 : left + 2;
+        return next < pages.length ? next : cur;
+      }
+      return left <= 1 ? 0 : left - 2;
+    });
+
+  // Arrow-key navigation while the lightbox is open.
+  useEffect(() => {
+    if (!zoomOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") stepZoom(1);
+      else if (e.key === "ArrowLeft") stepZoom(-1);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [zoomOpen]);
+
   const flip = (dir: "prev" | "next") =>
     dir === "prev"
       ? bookRef.current?.pageFlip()?.flipPrev()
       : bookRef.current?.pageFlip()?.flipNext();
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0]?.clientX ?? null;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const dx = (e.changedTouches[0]?.clientX ?? 0) - touchStartX.current;
+    if (Math.abs(dx) > SWIPE_THRESHOLD) stepZoom(dx < 0 ? 1 : -1);
+    touchStartX.current = null;
+  };
 
   const DownloadButton = pdfHref ? (
     <a
@@ -162,7 +206,7 @@ const NewspaperFlipbook = ({ pages, pdfHref }: NewspaperFlipbookProps) => {
 
         <button
           type="button"
-          onClick={() => setZoomSrc(pages[page])}
+          onClick={() => setZoomIndex(page)}
           className="ml-1 flex h-11 items-center gap-2 rounded-full bg-white/15 px-4 text-sm font-semibold text-white transition hover:bg-white/25"
         >
           <BsZoomIn className="text-base" />
@@ -172,34 +216,102 @@ const NewspaperFlipbook = ({ pages, pdfHref }: NewspaperFlipbookProps) => {
 
       {DownloadButton && <div className="mt-6">{DownloadButton}</div>}
 
-      {/* Zoom lightbox */}
-      <Dialog
-        open={zoomSrc !== null}
-        onClose={() => setZoomSrc(null)}
-        className="relative z-70"
-      >
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm" aria-hidden />
-        <div className="fixed inset-0 overflow-auto p-4 sm:p-10">
-          <DialogPanel className="mx-auto flex min-h-full max-w-5xl items-center justify-center">
-            <button
-              type="button"
-              onClick={() => setZoomSrc(null)}
-              className="fixed right-4 top-4 z-10 rounded-full bg-white p-2.5 text-dark shadow-lg transition hover:bg-white/90"
-            >
-              <span className="sr-only">Zavřít</span>
-              <BsXLg className="size-5" />
-            </button>
-            {zoomSrc && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={zoomSrc}
-                alt={`Volební noviny – strana ${page + 1}, zvětšeno`}
-                className="h-auto w-full rounded-lg shadow-2xl"
-              />
-            )}
-          </DialogPanel>
-        </div>
-      </Dialog>
+      {/* Zoom lightbox – shows the full spread; arrow keys / swipe / buttons
+          move a spread at a time */}
+      {(() => {
+        const zLeft = zoomIndex === null ? 0 : spreadLeft(zoomIndex);
+        const spreadPages =
+          zLeft === 0
+            ? [0]
+            : zLeft + 1 < pageCount
+              ? [zLeft, zLeft + 1]
+              : [zLeft];
+        const atFirst = zLeft === 0;
+        const atLast =
+          zLeft === 0 ? pageCount < 2 : zLeft + 2 >= pageCount;
+        const label =
+          spreadPages.length === 2
+            ? `${spreadPages[0] + 1}–${spreadPages[1] + 1}`
+            : `${spreadPages[0] + 1}`;
+
+        return (
+          <Dialog
+            open={zoomOpen}
+            onClose={() => setZoomIndex(null)}
+            className="relative z-70"
+          >
+            <div
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm"
+              aria-hidden
+            />
+            <div className="fixed inset-0 overflow-auto p-4 sm:p-10">
+              <DialogPanel
+                className="mx-auto flex min-h-full max-w-7xl items-center justify-center"
+                onTouchStart={onTouchStart}
+                onTouchEnd={onTouchEnd}
+              >
+                <button
+                  type="button"
+                  onClick={() => setZoomIndex(null)}
+                  className="fixed right-4 top-4 z-10 rounded-full bg-white p-2.5 text-dark shadow-lg transition hover:bg-white/90"
+                >
+                  <span className="sr-only">Zavřít</span>
+                  <BsXLg className="size-5" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => stepZoom(-1)}
+                  disabled={atFirst}
+                  className="fixed left-2 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-dark shadow-lg transition hover:bg-white disabled:opacity-30 sm:left-4"
+                >
+                  <span className="sr-only">Předchozí dvojstrana</span>
+                  <BsChevronLeft className="text-xl" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => stepZoom(1)}
+                  disabled={atLast}
+                  className="fixed right-2 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-dark shadow-lg transition hover:bg-white disabled:opacity-30 sm:right-4"
+                >
+                  <span className="sr-only">Další dvojstrana</span>
+                  <BsChevronRight className="text-xl" />
+                </button>
+
+                <span className="fixed bottom-4 left-1/2 z-10 -translate-x-1/2 rounded-full bg-black/60 px-4 py-1.5 text-sm font-semibold text-white">
+                  {label} / {pageCount}
+                </span>
+
+                {zoomOpen && (
+                  <div key={zLeft} className="flex w-full justify-center">
+                    {/* Lone cover / back page is capped to half width so a
+                        single page always renders at the same scale as one
+                        page of a two-page spread. */}
+                    <div
+                      className={`flex items-stretch overflow-hidden rounded-lg shadow-2xl ${
+                        spreadPages.length === 2 ? "w-full" : "w-1/2"
+                      }`}
+                    >
+                      {spreadPages.map((i) => (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          key={i}
+                          src={pages[i]}
+                          alt={`Volební noviny – strana ${i + 1}, zvětšeno`}
+                          className={`h-auto select-none ${
+                            spreadPages.length === 2 ? "w-1/2" : "w-full"
+                          }`}
+                          draggable={false}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </DialogPanel>
+            </div>
+          </Dialog>
+        );
+      })()}
     </div>
   );
 };

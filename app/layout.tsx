@@ -3,6 +3,7 @@ import { Poppins, Plus_Jakarta_Sans } from "next/font/google";
 
 import "./globals.css";
 import NavbarDesktop from "@/components/navbar";
+import Footer from "@/components/footer";
 import { navigationItems } from "@/data/navbarItems";
 
 const poppins = Poppins({
@@ -35,6 +36,7 @@ export default function RootLayout({
       <body className="min-h-full max-w-screen overflow-x-hidden flex flex-col">
         <NavbarDesktop items={navigationItems} />
         {children}
+        <Footer />
       </body>
     </html>
   );

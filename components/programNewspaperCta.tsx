@@ -1,12 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Newspaper } from "lucide-react";
 
 import { webButtonArrow } from "@/data/webGlobals";
 
-// Small card that floats over the viewport only while the programme section is
-// on screen. It points at the newspaper card in the "O nás" section (#noviny).
+// Square card that floats over the viewport only while the programme section is
+// on screen. It points at the newspaper flip-through section (#noviny).
 const ProgramNewspaperCta = () => {
   const [visible, setVisible] = useState(false);
 
@@ -29,21 +28,27 @@ const ProgramNewspaperCta = () => {
       href="#noviny"
       aria-hidden={!visible}
       tabIndex={visible ? 0 : -1}
-      className={`fixed inset-x-4 bottom-4 z-40 mx-auto flex max-w-md items-center gap-4 rounded-xl border border-black/5 bg-white p-4 shadow-2xl ring-1 ring-black/5 transition-all duration-300 ease-out motion-reduce:transition-none sm:inset-x-auto sm:bottom-6 sm:right-6 sm:max-w-sm ${
+      className={`fixed bottom-4 right-4 z-40 flex size-44 flex-col justify-end overflow-hidden rounded-xl bg-white p-5 shadow-2xl ring-1 ring-black/5 transition-all duration-300 ease-out motion-reduce:transition-none sm:bottom-6 sm:right-6 sm:size-52 ${
         visible
           ? "translate-y-0 opacity-100"
           : "pointer-events-none translate-y-6 opacity-0"
       }`}
     >
-      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-brand-blue/10 text-brand-blue">
-        <Newspaper className="h-6 w-6" aria-hidden />
-      </span>
-      <span className="text-sm font-semibold leading-snug text-dark">
+      {/* Faint newspaper mockup behind the text. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/img/noviny.webp"
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-10"
+      />
+
+      <span className="relative text-sm font-semibold leading-snug text-dark">
         Kompletní program a všechna data?{" "}
-        <span className="text-brand-blue">Nahlédněte do našich novin.</span>
-      </span>
-      <span aria-hidden className="ml-auto pl-1 text-brand-blue">
-        {webButtonArrow}
+        <span className="text-brand-blue">
+          Nahlédněte do našich novin.{" "}
+          <span aria-hidden>{webButtonArrow}</span>
+        </span>
       </span>
     </a>
   );

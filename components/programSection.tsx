@@ -6,12 +6,12 @@ import {
 } from "@/data/program";
 import ProgramNewspaperCta from "./programNewspaperCta";
 
-/** Little skewed pennant used as the bullet marker – echoes the site's slant. */
+/** Skewed red pennant bullet – picks up the site's slant / brand-red accents. */
 const Marker = ({ hollow = false }: { hollow?: boolean }) => (
   <span
     aria-hidden="true"
-    className={`mt-[0.4em] h-2.5 w-2.5 shrink-0 -skew-x-12 ${
-      hollow ? "border-2 border-brand-blue bg-transparent" : "bg-brand-blue"
+    className={`mt-[0.45em] h-2.5 w-2.5 shrink-0 -skew-x-12 ${
+      hollow ? "border-2 border-brand-red bg-transparent" : "bg-brand-red"
     }`}
   />
 );
@@ -51,11 +51,11 @@ const ProgramSection = () => {
       className="relative w-full bg-brand-blue/4 py-20 lg:py-32"
     >
       <Container>
-        <div className="mb-14 max-w-2xl">
-          <p className="text-sm font-bold uppercase tracking-widest text-brand-blue/60">
+        <div className="mb-12 max-w-2xl">
+          <p className="inline-block w-fit rounded-full bg-brand-red px-4 py-1 text-sm font-extrabold text-white">
             Volební program
           </p>
-          <h2 className="mt-3 text-3xl font-bold uppercase text-brand-blue lg:text-5xl">
+          <h2 className="mt-4 text-3xl font-bold uppercase text-brand-blue lg:text-5xl">
             {programHeading}
           </h2>
           <p className="mt-4 text-base text-balance text-dark/70 lg:text-lg">
@@ -64,17 +64,21 @@ const ProgramSection = () => {
           </p>
         </div>
 
-        <div className="gap-6 space-y-6 lg:columns-2 lg:gap-8 lg:space-y-8">
+        {/* Small left inset so the overhanging icon badges of the left column
+            line up with the container edge instead of poking past it. */}
+        <div className="gap-8 space-y-10 lg:columns-2 lg:pl-4">
           {programPriorities.map((priority) => {
             const Icon = priority.icon;
             return (
               <div
                 key={priority.title}
-                className="break-inside-avoid rounded-2xl bg-white p-6 shadow-sm lg:p-8"
+                className="relative mb-10 break-inside-avoid rounded-2xl bg-white p-6 pt-9 shadow-md ring-1 ring-black/5 lg:p-8 lg:pt-10"
               >
-                <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-blue/10 text-brand-blue">
+                {/* Red icon in a white disc, half-out of the top-left corner. */}
+                <span className="absolute -left-4 -top-5 flex h-14 w-14 items-center justify-center rounded-full bg-white text-brand-red shadow-lg ring-1 ring-black/5">
                   <Icon className="h-6 w-6" aria-hidden />
                 </span>
+
                 <h3 className="font-display text-lg font-extrabold uppercase tracking-tight text-brand-blue lg:text-xl">
                   {priority.title}
                 </h3>

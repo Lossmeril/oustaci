@@ -29,17 +29,25 @@ const NewspaperSection = () => {
   return (
     <section
       id="noviny"
-      className="section-blue w-full scroll-mt-24 bg-brand-blue py-20 text-white lg:py-32"
+      className="section-blue relative isolate w-full scroll-mt-24 overflow-hidden bg-brand-blue pb-20 pt-32 text-white sm:pt-40 lg:pb-32 lg:pt-52"
     >
+      {/* Skewed transition from the light programme section into the blue –
+          same brand-blue/4 as the section above, so the blue just reads as
+          having a slanted top edge. */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-28 bg-brand-blue/4 sm:h-40 lg:h-56"
+        style={{ clipPath: "polygon(0 0, 100% 0, 0 100%)" }}
+      />
+
       <Container>
-        <div className="mb-12 max-w-2xl">
+        <div className="mx-auto mb-12 max-w-2xl text-center">
           <p className="text-sm font-bold uppercase tracking-widest text-white/60">
             Volební noviny
           </p>
           <h2 className="mt-3 text-3xl font-bold uppercase lg:text-5xl">
             Zalistujte si našimi novinami
           </h2>
-          <p className="mt-4 text-balance text-white/80 lg:text-lg">
+          <p className="mx-auto mt-4 max-w-xl text-balance text-white/80 lg:text-lg">
             Kompletní program a všechna data přehledně na jednom místě. Listujte
             přímo tady, nebo si noviny stáhněte v&nbsp;PDF.
           </p>
