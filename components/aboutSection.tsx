@@ -6,7 +6,7 @@ const AboutSection = () => {
   return (
     <section
       id="o-nas"
-      className="section-blue relative isolate w-full overflow-hidden bg-brand-blue pt-0 pb-32 text-white sm:pb-40 lg:pt-32 lg:pb-56"
+      className="section-blue relative isolate w-full overflow-hidden bg-brand-blue pt-32 pb-32 text-white sm:pb-40 lg:pt-32 lg:pb-56"
     >
       {/* Skewed blue → white divider into the candidates section below. */}
       <div
@@ -28,12 +28,11 @@ const AboutSection = () => {
 
             <div className="mt-6 space-y-5 text-base leading-relaxed text-white/85 lg:text-lg">
               <p>
-                Jsme <em>nepolitické sdružení</em>{" "}
-                složené z&nbsp;občanů města Ústí nad&nbsp;Orlicí. Sdružení
-                vzniklo na začátku roku 2010 jako protipól politickým stranám
-                a&nbsp;tehdejšímu vedení města. V&nbsp;letošním roce budeme
-                do&nbsp;komunálních voleb nominovat své kandidáty{" "}
-                <em>již popáté</em>.
+                Jsme <em>nepolitické sdružení</em> složené z&nbsp;občanů města
+                Ústí nad&nbsp;Orlicí. Sdružení vzniklo na začátku roku 2010 jako
+                protipól politickým stranám a&nbsp;tehdejšímu vedení města.
+                V&nbsp;letošním roce budeme do&nbsp;komunálních voleb nominovat
+                své kandidáty <em>již popáté</em>.
               </p>
               <p>
                 Sdružení vychází z&nbsp;tradičních názorů, které respektují úctu
@@ -57,8 +56,8 @@ const AboutSection = () => {
               </div>
               <p className="mt-6 text-base leading-relaxed text-white/85 lg:text-lg">
                 Je to prosté, stále je nám naše město prioritou. Stále je Ústí
-                nad&nbsp;Orlicí naše <em>srdcovka</em>{" "}
-                a&nbsp;stále dané sliby plníme.
+                nad&nbsp;Orlicí naše <em>srdcovka</em> a&nbsp;stále dané sliby
+                plníme.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">

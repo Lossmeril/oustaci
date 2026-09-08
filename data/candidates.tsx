@@ -124,7 +124,7 @@ export const candidates: Candidate[] = [
     photo: "/img/candidates/13.webp",
     age: 55,
     claim: "",
-    cv: "Kdo by neznal ústeckého fotografa Petra Wagenknechta, který za SNK Oušťáci kandiduje počtvrté. Petra není těžké představit – dávno se svou fotografickou prací a volnou tvorbou prosadil.\n\nZískal řadu prestižních ocenění, třikrát byl oceněn porotou Czech Press Photo a v roce 2016 byl zařazen mezi 150 nejlepších svatebních fotografů světa. Petr má prostě neskutečný talent zachytit v originální a osobité formě emoce a náladu; spoušť foťáku mačká v pravý okamžik a každá jeho fotka vypráví svůj příběh.\n\nV poslední době se věnuje také karikatuře s vtipným a trefným komentářem, ve které reaguje na aktuální události. Samozřejmě fotí i nás Oušťáky – a proto nám to na předvolebních plakátech tak sluší!",
+    cv: "Kdo by neznal ústeckého fotografa Petra Wagenknechta, který za SNK Oušťáci kandiduje počtvrté. Petra není těžké představit – dávno se svou fotografickou prací a volnou tvorbou prosadil.\n\nZískal řadu prestižních ocenění, třikrát byl oceněn porotou Czech Press Photo a v roce 2016 byl zařazen mezi 150 nejlepších svatebních fotografů světa. Petr má prostě neskutečný talent zachytit v originální a osobité formě emoce a náladu; spoušť foťáku mačká v pravý okamžik a každá jeho fotka vypráví svůj příběh.\n\nV poslední době se věnuje také karikatuře s vtipným a trefným komentářem, ve které reaguje na aktuální události. Je aktivním hráčem stolního tenisu za TTC Sokol Hylváty. Samozřejmě fotí i nás Oušťáky – a proto nám to na předvolebních plakátech tak sluší!\n\nPetr kandiduje se šťastným číslem 13. Rád by podpořil kulturu a vybudování otužovacího jezírka ve městě.",
   },
   {
     number: 14,

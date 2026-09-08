@@ -15,6 +15,7 @@ interface PageFlipApi {
   flipNext: () => void;
   flipPrev: () => void;
   getPageCount: () => number;
+  getOrientation: () => "portrait" | "landscape";
 }
 interface FlipBookInstance {
   pageFlip: () => PageFlipApi | undefined;
@@ -40,6 +41,22 @@ const SWIPE_THRESHOLD = 40;
 /** Left-hand page index of the spread that page `i` sits in (0 = lone cover). */
 const spreadLeft = (i: number) => (i <= 0 ? 0 : i % 2 === 1 ? i : i - 1);
 
+/**
+ * Page indices shown together in the zoom lightbox for `index`.
+ * Portrait mirrors the book on phones – one page at a time; landscape shows the
+ * full left/right spread (the cover and a trailing odd page stand alone).
+ */
+const zoomSpread = (
+  index: number,
+  pageCount: number,
+  portrait: boolean,
+): number[] => {
+  if (portrait) return [index];
+  const left = spreadLeft(index);
+  if (left === 0) return [0];
+  return left + 1 < pageCount ? [left, left + 1] : [left];
+};
+
 const NewspaperFlipbook = ({ pages, pdfHref }: NewspaperFlipbookProps) => {
   const bookRef = useRef<FlipBookInstance>(null);
   const [page, setPage] = useState(0);
@@ -52,13 +69,32 @@ const NewspaperFlipbook = ({ pages, pdfHref }: NewspaperFlipbookProps) => {
   // eslint-disable-next-line react-hooks/set-state-in-effect -- deliberate client-only gate
   useEffect(() => setMounted(true), []);
 
+  // The flip engine drops to one page at a time on narrow screens ("portrait").
+  // Mirror that everywhere else so the counter and the zoom lightbox don't offer
+  // a two-page spread that isn't on screen.
+  const [portrait, setPortrait] = useState(false);
+  useEffect(() => {
+    if (!mounted) return;
+    const sync = () => {
+      const o = bookRef.current?.pageFlip()?.getOrientation();
+      if (o) setPortrait(o === "portrait");
+    };
+    sync();
+    window.addEventListener("resize", sync);
+    return () => window.removeEventListener("resize", sync);
+  }, [mounted]);
+
   const zoomOpen = zoomIndex !== null;
 
-  // Move the lightbox one spread forward (1) or back (-1). The cover is a lone
-  // spread; every other spread is a left/right pair.
+  // Move the lightbox one step forward (1) or back (-1) – a single page in
+  // portrait, a whole spread otherwise (the cover / trailing odd page are lone).
   const stepZoom = (dir: -1 | 1) =>
     setZoomIndex((cur) => {
       if (cur === null) return cur;
+      if (portrait) {
+        const next = cur + dir;
+        return next >= 0 && next < pages.length ? next : cur;
+      }
       const left = spreadLeft(cur);
       if (dir === 1) {
         const next = left === 0 ? 1 : left + 2;
@@ -162,6 +198,9 @@ const NewspaperFlipbook = ({ pages, pdfHref }: NewspaperFlipbookProps) => {
           startPage={0}
           disableFlipByClick={false}
           onFlip={(e: { data: number }) => setPage(e.data)}
+          onChangeOrientation={(e: { data: "portrait" | "landscape" }) =>
+            setPortrait(e.data === "portrait")
+          }
         >
           {pages.map((src, i) => (
             <div key={src} className="h-full w-full bg-white">
@@ -190,7 +229,9 @@ const NewspaperFlipbook = ({ pages, pdfHref }: NewspaperFlipbookProps) => {
         </button>
 
         <span className="min-w-24 text-center text-sm font-semibold text-white/80">
-          {page > 0 && page < pageCount - 1 ? `${page + 1}–${page + 2}` : page + 1}{" "}
+          {!portrait && page > 0 && page < pageCount - 1
+            ? `${page + 1}–${page + 2}`
+            : page + 1}{" "}
           / {pageCount}
         </span>
 
@@ -216,23 +257,19 @@ const NewspaperFlipbook = ({ pages, pdfHref }: NewspaperFlipbookProps) => {
 
       {DownloadButton && <div className="mt-6">{DownloadButton}</div>}
 
-      {/* Zoom lightbox – shows the full spread; arrow keys / swipe / buttons
-          move a spread at a time */}
+      {/* Zoom lightbox – one page in portrait, a full spread otherwise; arrow
+          keys / swipe / buttons step through it to match. */}
       {(() => {
-        const zLeft = zoomIndex === null ? 0 : spreadLeft(zoomIndex);
         const spreadPages =
-          zLeft === 0
-            ? [0]
-            : zLeft + 1 < pageCount
-              ? [zLeft, zLeft + 1]
-              : [zLeft];
-        const atFirst = zLeft === 0;
+          zoomIndex === null ? [] : zoomSpread(zoomIndex, pageCount, portrait);
+        const atFirst = spreadPages.length === 0 || spreadPages[0] === 0;
         const atLast =
-          zLeft === 0 ? pageCount < 2 : zLeft + 2 >= pageCount;
-        const label =
-          spreadPages.length === 2
-            ? `${spreadPages[0] + 1}–${spreadPages[1] + 1}`
-            : `${spreadPages[0] + 1}`;
+          spreadPages.length === 0 ||
+          spreadPages[spreadPages.length - 1] >= pageCount - 1;
+        const single = spreadPages.length < 2;
+        const label = single
+          ? `${(spreadPages[0] ?? 0) + 1}`
+          : `${spreadPages[0] + 1}–${spreadPages[1] + 1}`;
 
         return (
           <Dialog
@@ -265,7 +302,9 @@ const NewspaperFlipbook = ({ pages, pdfHref }: NewspaperFlipbookProps) => {
                   disabled={atFirst}
                   className="fixed left-2 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-dark shadow-lg transition hover:bg-white disabled:opacity-30 sm:left-4"
                 >
-                  <span className="sr-only">Předchozí dvojstrana</span>
+                  <span className="sr-only">
+                    {single ? "Předchozí strana" : "Předchozí dvojstrana"}
+                  </span>
                   <BsChevronLeft className="text-xl" />
                 </button>
                 <button
@@ -274,7 +313,9 @@ const NewspaperFlipbook = ({ pages, pdfHref }: NewspaperFlipbookProps) => {
                   disabled={atLast}
                   className="fixed right-2 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-dark shadow-lg transition hover:bg-white disabled:opacity-30 sm:right-4"
                 >
-                  <span className="sr-only">Další dvojstrana</span>
+                  <span className="sr-only">
+                    {single ? "Další strana" : "Další dvojstrana"}
+                  </span>
                   <BsChevronRight className="text-xl" />
                 </button>
 
@@ -283,13 +324,17 @@ const NewspaperFlipbook = ({ pages, pdfHref }: NewspaperFlipbookProps) => {
                 </span>
 
                 {zoomOpen && (
-                  <div key={zLeft} className="flex w-full justify-center">
-                    {/* Lone cover / back page is capped to half width so a
-                        single page always renders at the same scale as one
-                        page of a two-page spread. */}
+                  <div
+                    key={spreadPages[0]}
+                    className="flex w-full justify-center"
+                  >
+                    {/* In a landscape spread a lone cover / back page is capped
+                        to half width so it renders at the same scale as one
+                        page of a pair; in portrait a single page fills the
+                        frame. */}
                     <div
                       className={`flex items-stretch overflow-hidden rounded-lg shadow-2xl ${
-                        spreadPages.length === 2 ? "w-full" : "w-1/2"
+                        single ? (portrait ? "w-full" : "w-1/2") : "w-full"
                       }`}
                     >
                       {spreadPages.map((i) => (
@@ -299,7 +344,7 @@ const NewspaperFlipbook = ({ pages, pdfHref }: NewspaperFlipbookProps) => {
                           src={pages[i]}
                           alt={`Volební noviny – strana ${i + 1}, zvětšeno`}
                           className={`h-auto select-none ${
-                            spreadPages.length === 2 ? "w-1/2" : "w-full"
+                            single ? "w-full" : "w-1/2"
                           }`}
                           draggable={false}
                         />

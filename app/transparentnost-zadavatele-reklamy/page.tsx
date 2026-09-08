@@ -12,23 +12,14 @@ export const metadata: Metadata = {
 };
 
 const TRANSPARENCY_DIR = "public/img/transparency";
-const PRIMARY = "transparentnost-reklamy.webp";
 
-/** All image files in the transparency folder, primary sheet first. */
-const images = (() => {
-  const files = readdirSync(join(process.cwd(), TRANSPARENCY_DIR))
-    .filter((f) => /\.(webp|png|jpe?g|avif|gif)$/i.test(f))
-    .sort((a, b) => a.localeCompare(b, "cs"));
-
-  return [
-    ...files.filter((f) => f === PRIMARY),
-    ...files.filter((f) => f !== PRIMARY),
-  ];
-})();
+/** All image files in the transparency folder, in a stable order. */
+const images = readdirSync(join(process.cwd(), TRANSPARENCY_DIR))
+  .filter((f) => /\.(webp|png|jpe?g|avif|gif)$/i.test(f))
+  .sort((a, b) => a.localeCompare(b, "cs"));
 
 /** Turn a file name into a readable caption. */
 const caption = (file: string) => {
-  if (file === PRIMARY) return "Transparentnost zadavatele reklamy";
   const name = file
     .replace(/\.[^.]+$/, "")
     .replace(/^transparentnost\s*-\s*/i, "")

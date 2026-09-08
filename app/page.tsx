@@ -42,7 +42,7 @@ const HomePage = () => {
           <img
             src="/img/razitko-3-white.svg"
             alt=""
-            className="absolute w-60 h-60 bottom-8 right-8 z-20"
+            className="absolute bottom-4 right-4 z-20 hidden h-40 w-40 sm:bottom-8 sm:right-8 sm:block sm:h-52 sm:w-52 lg:h-60 lg:w-60"
           />
 
           {/* Treatment, nudged down by --line so the white edge shows */}
@@ -95,10 +95,10 @@ const HomePage = () => {
                   className="w-44 lg:w-56 mb-10"
                 /> */}
 
-                <p className="mt-4 font-display text-lg font-extrabold uppercase leading-[1.05] tracking-tight text-brand-blue lg:text-5xl">
+                <p className="mt-4 font-display text-2xl font-extrabold uppercase leading-[1.05] tracking-tight text-brand-blue sm:text-3xl lg:text-5xl">
                   Priority neměníme.
                 </p>
-                <p className="mt-4 font-display text-lg font-extrabold leading-[1.05] tracking-tight text-black/80 lg:text-2xl">
+                <p className="mt-4 font-display text-lg font-extrabold leading-[1.05] tracking-tight text-black/80 sm:text-xl lg:text-2xl">
                   Čtvero volebních období.
                   <br className="hidden sm:block" /> Jeden společný cíl.
                 </p>

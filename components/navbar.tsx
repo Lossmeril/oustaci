@@ -26,9 +26,9 @@ const NavbarDesktop: React.FC<NavbarProps> = ({ items }) => {
       {/* ------ DESKTOP MENU */}
       <nav
         aria-label="Global"
-        className="flex items-center justify-between p-6 lg:px-20 bg-brand-blue shadow-2xs h-20"
+        className="flex items-center justify-between p-6 xl:px-20 bg-brand-blue shadow-2xs h-20"
       >
-        <div className="flex lg:flex-1">
+        <div className="flex xl:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">
               Oušťáci - Sdružení nezávislých kandidátů
@@ -41,7 +41,7 @@ const NavbarDesktop: React.FC<NavbarProps> = ({ items }) => {
             />
           </Link>
         </div>
-        <div className="flex lg:hidden">
+        <div className="flex xl:hidden">
           <button
             type="button"
             onClick={() => setMobileMenuOpen(true)}
@@ -51,7 +51,7 @@ const NavbarDesktop: React.FC<NavbarProps> = ({ items }) => {
             <BsList aria-hidden="true" className="size-6" />
           </button>
         </div>
-        <div className="hidden lg:flex justify-start gap-5">
+        <div className="hidden xl:flex justify-start gap-5">
           {items.map((item) => (
             <a
               key={item.name}
@@ -62,7 +62,7 @@ const NavbarDesktop: React.FC<NavbarProps> = ({ items }) => {
             </a>
           ))}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-4">
+        <div className="hidden xl:flex xl:flex-1 xl:justify-end items-center gap-4">
           <Button label={buttonText} href={buttonHref} inverted />
           <SocialButtons />
         </div>
@@ -73,7 +73,7 @@ const NavbarDesktop: React.FC<NavbarProps> = ({ items }) => {
       <Dialog
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}
-        className="lg:hidden"
+        className="xl:hidden"
       >
         <div className="fixed inset-0 z-50" />
         <DialogPanel
