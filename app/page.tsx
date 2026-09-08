@@ -16,11 +16,11 @@ const HomePage = () => {
           <img
             src="/img/skupina 9.jpg"
             alt="Hero"
-            className="w-full h-full object-cover opacity-100 object-top"
+            className="w-full h-full object-cover opacity-50 object-top"
           />
         </div>
 
-        <div className="w-full h-full absolute top-0 left-0 pointer-events-none -z-5 bg-white/60 mask-r-from-0 to-100%"></div>
+        <div className="w-full h-full absolute top-0 left-0 pointer-events-none -z-5 bg-white/50 mask-r-from-0 to-100%"></div>
 
         {/* Decorative slanted visual along the bottom edge – three blend layers
             over the hero image, split from the content by a pure white line.
@@ -36,13 +36,6 @@ const HomePage = () => {
               clipPath:
                 "polygon(0% calc(100% - var(--band) + var(--slant)), 100% calc(100% - var(--band)), 100% 100%, 0% 100%)",
             }}
-          />
-
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/img/razitko-3-white.svg"
-            alt=""
-            className="absolute bottom-4 right-4 z-20 hidden h-40 w-40 sm:bottom-8 sm:right-8 sm:block sm:h-52 sm:w-52 lg:h-60 lg:w-60"
           />
 
           {/* Treatment, nudged down by --line so the white edge shows */}
@@ -76,10 +69,10 @@ const HomePage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 w-full items-center gap-8 lg:gap-12 mb-20">
             {/* Text + CTA live in a solid white card so they stay legible over
                 the candidate photo behind the hero. */}
-            <div className="relative w-full overflow-hidden rounded-2xl bg-white p-8 shadow-lg ring-1 ring-black/5 lg:p-8 xl:translate-y-10">
+            <div className="z-5 relative w-full overflow-hidden rounded-2xl bg-white p-8 shadow-lg ring-1 ring-black/5 lg:p-8 xl:translate-y-10">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/img/razítko_color.png"
+                src="/img/razitko-3.svg"
                 alt=""
                 className="pointer-events-none absolute top-0 right-0 h-72 w-72 translate-x-10 translate-y-2 object-contain opacity-10"
               />
@@ -122,7 +115,26 @@ const HomePage = () => {
               </div>
             </div>
 
-            {/* Right column left open – the candidate photo shows through here. */}
+            {/* Group photo as a tilted polaroid – a guaranteed, unobstructed
+                look at the whole team, since faces in the hero photo behind the
+                text card can't all be kept clear. */}
+            <div className="text-center">
+              <figure className="z-0 absolute left-1/2 -translate-x-1/2 top-1/3 lg:translate-x-0 lg:top-1/2 -translate-y-1/2 scale-135 rotate-7 rounded-sm bg-white p-3 pb-12 shadow-2xl ring-1 ring-black/5 transition-transform duration-300 motion-reduce:transition-none sm:p-4 sm:pb-16">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/img/skupina 9.jpg"
+                  alt="Kandidáti SNK Oušťáci"
+                  className="block aspect-4/3 w-full max-w-md object-cover object-top sm:max-w-lg"
+                />
+
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/img/razitko-3-white.svg"
+                  alt=""
+                  className="absolute bottom-4 right-4 z-20 hidden h-40 w-40 sm:bottom-8 sm:right-8 sm:block"
+                />
+              </figure>
+            </div>
           </div>
         </Container>
       </div>
