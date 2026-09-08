@@ -6,7 +6,6 @@ import Link from "next/link";
 
 import { Dialog, DialogPanel } from "@headlessui/react";
 
-import Button from "./button";
 import SocialButtons from "./socialButtons";
 import { NavigationItem } from "@/data/navbarItems";
 import { BsList, BsXCircle } from "react-icons/bs";
@@ -16,9 +15,6 @@ interface NavbarProps {
 }
 
 const NavbarDesktop: React.FC<NavbarProps> = ({ items }) => {
-  const buttonHref = "#kontakt";
-  const buttonText = "Napište nám";
-
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -63,7 +59,6 @@ const NavbarDesktop: React.FC<NavbarProps> = ({ items }) => {
           ))}
         </div>
         <div className="hidden xl:flex xl:flex-1 xl:justify-end items-center gap-4">
-          <Button label={buttonText} href={buttonHref} inverted />
           <SocialButtons />
         </div>
       </nav>
@@ -118,7 +113,6 @@ const NavbarDesktop: React.FC<NavbarProps> = ({ items }) => {
                 ))}
               </div>
               <div className="py-6 flex items-center gap-4">
-                <Button label={buttonText} href={buttonHref} inverted />
                 <SocialButtons />
               </div>
             </div>

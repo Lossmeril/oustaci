@@ -76,7 +76,7 @@ const HomePage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 w-full items-center gap-8 lg:gap-12 mb-20">
             {/* Text + CTA live in a solid white card so they stay legible over
                 the candidate photo behind the hero. */}
-            <div className="relative w-full overflow-hidden rounded-2xl bg-white p-8 shadow-lg ring-1 ring-black/5 lg:p-12">
+            <div className="relative w-full overflow-hidden rounded-2xl bg-white p-8 shadow-lg ring-1 ring-black/5 lg:p-1">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/img/razítko_color.png"
