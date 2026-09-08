@@ -44,15 +44,15 @@ const CandidateCard = ({ candidate, onSelect, ref }: CandidateCardProps) => {
         style={{ rotate: `${tiltFor(candidate.number)}deg` }}
       >
         <div className="rounded-xl bg-white px-4 py-3 shadow-xl ring-1 ring-black/5">
-          <p className="font-extrabold leading-tight text-brand-blue">
+          <p className="text-sm lg:text-base font-extrabold leading-tight text-brand-blue">
             {candidate.name}
           </p>
           {candidate.age !== undefined && (
-            <span className="text-sm font-medium text-dark/40">
+            <span className="hidden lg:block text-sm font-medium text-dark/40">
               {candidate.age} let
             </span>
           )}
-          <p className="mt-1 text-sm leading-snug text-dark/70">
+          <p className="hidden lg:block mt-1 text-sm leading-snug text-dark/70">
             {candidate.claim}
           </p>
         </div>

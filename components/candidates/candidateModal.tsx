@@ -55,7 +55,7 @@ const CandidateModal: React.FC<CandidateModalProps> = ({
 
               {/* Skewed text card, overlapping the photo */}
               <div className="z-10 -mt-8 w-[92%] -rotate-2 sm:-ml-2 sm:mt-20 sm:w-auto sm:flex-1">
-                <div className="max-h-[70vh] overflow-y-auto rounded-3xl bg-white p-6 shadow-2xl ring-1 ring-black/5 sm:p-8">
+                <div className="max-h-auto lg:max-h-[70vh] rounded-3xl bg-white p-6 shadow-2xl ring-1 ring-black/5 sm:p-8">
                   <DialogTitle className="text-2xl font-bold text-brand-blue sm:text-3xl">
                     {candidate.name}
                   </DialogTitle>
@@ -64,10 +64,10 @@ const CandidateModal: React.FC<CandidateModalProps> = ({
                       {candidate.age} let
                     </p>
                   )}
-                  <p className="mt-3 text-lg font-semibold text-dark/80">
+                  <p className="mt-3 text-sm lg:text-lg font-semibold text-dark/80">
                     {candidate.claim}
                   </p>
-                  <div className="mt-5 space-y-3 leading-relaxed text-dark/80">
+                  <div className="mt-5 space-y-3 leading-normal lg:leading-relaxed text-dark/80 text-sm lg:text-base">
                     {candidate.cv.split("\n\n").map((paragraph, i) => (
                       <p key={i}>{paragraph}</p>
                     ))}

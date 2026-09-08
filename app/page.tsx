@@ -10,17 +10,23 @@ import SocialButtons from "@/components/socialButtons";
 const HomePage = () => {
   return (
     <main className="w-full min-h-screen">
-      <div className="w-full min-h-screen relative flex flex-col justify-end">
+      <div className="w-full min-h-220 relative flex flex-col justify-end">
         <div className="w-full h-full absolute top-0 left-0 pointer-events-none -z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/img/skupina 9.jpg"
+            src="/img/skupina-tall.webp"
             alt="Hero"
-            className="w-full h-full object-cover opacity-100 object-top"
+            className="block md:hidden w-full h-full object-contain opacity-100 object-top"
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/img/skupina-wide.webp"
+            alt="Hero"
+            className="hidden md:block w-full h-full object-cover opacity-100 md:object-[85%] lg:object-right"
           />
         </div>
 
-        <div className="w-full h-full absolute top-0 left-0 pointer-events-none -z-5 bg-white/50 mask-r-from-0 to-100%"></div>
+        <div className="w-full h-full absolute top-0 left-0 pointer-events-none -z-5 bg-white/20 mask-r-from-0 to-100%"></div>
 
         {/* Decorative slanted visual along the bottom edge – three blend layers
             over the hero image, split from the content by a pure white line.
@@ -66,10 +72,9 @@ const HomePage = () => {
         </div>
 
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 w-full items-center gap-8 lg:gap-12 mb-20">
-            {/* Text + CTA live in a solid white card so they stay legible over
-                the candidate photo behind the hero. */}
-            <div className="z-5 relative w-full overflow-hidden rounded-2xl bg-white p-8 shadow-lg ring-1 ring-black/5 lg:p-8 xl:translate-y-10">
+          <div className="flex flex-col md:grid md:grid-cols-1 xl:grid-cols-2 w-full items-center gap-8 lg:gap-12 mb-20">
+            <div className="block h-50 md:hidden"></div>
+            <div className="order-2 md:order-1 z-5 relative w-full overflow-hidden rounded-2xl bg-white p-8 shadow-lg ring-1 ring-black/5 lg:p-6 xl:translate-y-10">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/img/razitko-3.svg"
@@ -91,18 +96,18 @@ const HomePage = () => {
                 <p className="mt-4 font-display text-2xl font-extrabold uppercase leading-[1.05] tracking-tight text-brand-blue sm:text-3xl lg:text-5xl">
                   Priority neměníme.
                 </p>
-                <p className="mt-4 font-display text-lg font-extrabold leading-[1.05] tracking-tight text-black/80 sm:text-xl lg:text-xl">
+                <p className="mt-4 font-display text-base font-extrabold leading-[1.05] tracking-tight text-black/80 sm:text-xl lg:text-xl">
                   Čtvero volebních období. Jeden společný cíl.
                 </p>
 
-                <p className="mt-5 text-balance text-base leading-relaxed text-dark/70 lg:text-sm">
+                <p className="mt-5 text-balance text-sm leading-relaxed text-dark/70 lg:text-sm">
                   Každé roční období má svůj význam – jaro přináší nové začátky,
                   léto růst, podzim zkušenosti a&nbsp;bilancování, zima přípravu
                   na nové záměry. Stejně vnímáme i&nbsp;šestnáct let, po která
                   SNK Oušťáci vedou Ústí nad&nbsp;Orlicí.
                 </p>
 
-                <p className="mt-7 text-balance font-semibold text-dark lg:text-sm">
+                <p className="mt-7 text-balance font-semibold text-dark text-sm">
                   V&nbsp;říjnu jdeme do pátého období – s&nbsp;omlazenou
                   kandidátkou a&nbsp;stejnými prioritami.
                 </p>
