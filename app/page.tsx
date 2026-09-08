@@ -76,7 +76,7 @@ const HomePage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 w-full items-center gap-8 lg:gap-12 mb-20">
             {/* Text + CTA live in a solid white card so they stay legible over
                 the candidate photo behind the hero. */}
-            <div className="relative w-full overflow-hidden rounded-2xl bg-white p-8 shadow-lg ring-1 ring-black/5 lg:p-1">
+            <div className="relative w-full overflow-hidden rounded-2xl bg-white p-8 shadow-lg ring-1 ring-black/5 lg:p-8 xl:translate-y-10">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/img/razítko_color.png"
@@ -98,9 +98,8 @@ const HomePage = () => {
                 <p className="mt-4 font-display text-2xl font-extrabold uppercase leading-[1.05] tracking-tight text-brand-blue sm:text-3xl lg:text-5xl">
                   Priority neměníme.
                 </p>
-                <p className="mt-4 font-display text-lg font-extrabold leading-[1.05] tracking-tight text-black/80 sm:text-xl lg:text-2xl">
-                  Čtvero volebních období.
-                  <br className="hidden sm:block" /> Jeden společný cíl.
+                <p className="mt-4 font-display text-lg font-extrabold leading-[1.05] tracking-tight text-black/80 sm:text-xl lg:text-xl">
+                  Čtvero volebních období. Jeden společný cíl.
                 </p>
 
                 <p className="mt-5 text-balance text-base leading-relaxed text-dark/70 lg:text-sm">
