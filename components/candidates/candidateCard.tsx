@@ -55,6 +55,9 @@ const CandidateCard = ({ candidate, onSelect, ref }: CandidateCardProps) => {
           <p className="hidden lg:block mt-1 text-sm leading-snug text-dark/70">
             {candidate.claim}
           </p>
+          <p className="text-xs font-medium text-brand-blue hover:underline mt-2">
+            Více o {candidate.nameLocative} &gt;
+          </p>
         </div>
       </div>
     </button>

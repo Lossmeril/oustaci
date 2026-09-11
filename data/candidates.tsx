@@ -3,6 +3,11 @@ export type Candidate = {
   number: number;
   name: string;
   /**
+   * Full name declined in the Czech locative case (bez titulů), e.g.
+   * "Petr Hájek" -> "Petru Hájkovi". Used in phrases like "Více o …".
+   */
+  nameLocative: string;
+  /**
    * Path to the portrait. Drop the files into `/public/img/candidates/`.
    * If the file is missing, the card falls back to the candidate's initials.
    */
@@ -21,6 +26,7 @@ export const candidates: Candidate[] = [
   {
     number: 1,
     name: "Petr Hájek",
+    nameLocative: "Petru Hájkovi",
     photo: "/img/candidates/01.webp",
     age: 59,
     claim: "Dokončit započaté, to je oč tu běží.",
@@ -29,6 +35,7 @@ export const candidates: Candidate[] = [
   {
     number: 2,
     name: "Mgr. Pavel Svatoš",
+    nameLocative: "Pavlu Svatošovi",
     photo: "/img/candidates/02.webp",
     age: 57,
     claim: "Dobrý tým se nemění a je ctí pro něj pracovat.",
@@ -37,6 +44,7 @@ export const candidates: Candidate[] = [
   {
     number: 3,
     name: "Blanka Holmesová",
+    nameLocative: "Blance Holmesové",
     photo: "/img/candidates/03.webp",
     age: 56,
     claim:
@@ -46,6 +54,7 @@ export const candidates: Candidate[] = [
   {
     number: 4,
     name: "RNDr. MgA. Lenka Janyšová",
+    nameLocative: "Lence Janyšové",
     photo: "/img/candidates/04.webp",
     age: 63,
     claim:
@@ -55,6 +64,7 @@ export const candidates: Candidate[] = [
   {
     number: 5,
     name: "Mgr. Petr Kulhavý",
+    nameLocative: "Petru Kulhavém",
     photo: "/img/candidates/05.webp",
     age: 50,
     claim: "Pracovat pro druhé mě baví. Zvládám to i bez mandátu.",
@@ -63,6 +73,7 @@ export const candidates: Candidate[] = [
   {
     number: 6,
     name: "František Velebný",
+    nameLocative: "Františku Velebném",
     photo: "/img/candidates/06.webp",
     age: 49,
     claim:
@@ -72,6 +83,7 @@ export const candidates: Candidate[] = [
   {
     number: 7,
     name: "Hana Drobná",
+    nameLocative: "Haně Drobné",
     photo: "/img/candidates/07.webp",
     age: 69,
     claim:
@@ -81,6 +93,7 @@ export const candidates: Candidate[] = [
   {
     number: 8,
     name: "Bc. Radek Mačát, MBA",
+    nameLocative: "Radku Mačátovi",
     photo: "/img/candidates/08.webp",
     age: 53,
     claim: "Tohle město mám prostě rád.",
@@ -89,6 +102,7 @@ export const candidates: Candidate[] = [
   {
     number: 9,
     name: "Bc. David Šítek",
+    nameLocative: "Davidu Šítkovi",
     photo: "/img/candidates/09.webp",
     age: 50,
     claim: "Odolné město potřebuje rozumné řešení.",
@@ -97,6 +111,7 @@ export const candidates: Candidate[] = [
   {
     number: 10,
     name: "Barbora Medunová",
+    nameLocative: "Barboře Medunové",
     photo: "/img/candidates/10.webp",
     age: 21,
     claim: "Více mladých lidí do politiky.",
@@ -105,6 +120,7 @@ export const candidates: Candidate[] = [
   {
     number: 11,
     name: "Mgr. Martina Drdová",
+    nameLocative: "Martině Drdové",
     photo: "/img/candidates/11.webp",
     age: 32,
     claim: "Starost není slabost.",
@@ -113,6 +129,7 @@ export const candidates: Candidate[] = [
   {
     number: 12,
     name: "Linda Gregarová, DiS.",
+    nameLocative: "Lindě Gregarové",
     photo: "/img/candidates/12.webp",
     age: 41,
     claim: "Nejen muzika. Taky naše město.",
@@ -121,6 +138,7 @@ export const candidates: Candidate[] = [
   {
     number: 13,
     name: "Petr Wagenknecht",
+    nameLocative: "Petru Wagenknechtovi",
     photo: "/img/candidates/13.webp",
     age: 55,
     claim: "",
@@ -129,6 +147,7 @@ export const candidates: Candidate[] = [
   {
     number: 14,
     name: "Michal Špitálský, MRes",
+    nameLocative: "Michalu Špitálském",
     photo: "/img/candidates/14.webp",
     age: 26,
     claim: 'Více "třetích míst" pro potkávání se!',
@@ -137,6 +156,7 @@ export const candidates: Candidate[] = [
   {
     number: 15,
     name: "Zuzana Mačátová",
+    nameLocative: "Zuzaně Mačátové",
     photo: "/img/candidates/15.webp",
     age: 46,
     claim: "Pomáhá. Spojuje. Mění.",
@@ -145,6 +165,7 @@ export const candidates: Candidate[] = [
   {
     number: 16,
     name: "Mgr. Vlastimil Drda",
+    nameLocative: "Vlastimilu Drdovi",
     photo: "/img/candidates/16.webp",
     age: 43,
     claim: "Začít musíme sami u sebe.",
@@ -153,6 +174,7 @@ export const candidates: Candidate[] = [
   {
     number: 17,
     name: "Bc. Zlatuše Bartošová",
+    nameLocative: "Zlatuši Bartošové",
     photo: "/img/candidates/17.webp",
     age: 60,
     claim: "Ústí je město s příběhem, je městem pro život.",
@@ -161,6 +183,7 @@ export const candidates: Candidate[] = [
   {
     number: 18,
     name: "MUDr. Jan Skotálek",
+    nameLocative: "Janu Skotálkovi",
     photo: "/img/candidates/18.webp",
     age: 65,
     claim: "Jsem šťastný, že jsem oušťák.",
@@ -169,6 +192,7 @@ export const candidates: Candidate[] = [
   {
     number: 19,
     name: "Ing. arch. Jáchym Kopecký",
+    nameLocative: "Jáchymu Kopeckém",
     photo: "/img/candidates/19.webp",
     age: 31,
     claim: "Makejme, Ústí bude takové, jaké si ho uděláme.",
@@ -177,6 +201,7 @@ export const candidates: Candidate[] = [
   {
     number: 20,
     name: "Mgr. Marcela Bucháčková",
+    nameLocative: "Marcele Bucháčkové",
     photo: "/img/candidates/20.webp",
     age: 41,
     claim: "Neměň to, co funguje!",
@@ -185,6 +210,7 @@ export const candidates: Candidate[] = [
   {
     number: 21,
     name: "MUDr. Ladislav Skalický",
+    nameLocative: "Ladislavu Skalickém",
     photo: "/img/candidates/21.webp",
     age: 62,
     claim: "S úsměvem se lépe šlape.",
@@ -193,6 +219,7 @@ export const candidates: Candidate[] = [
   {
     number: 22,
     name: "Pavel Koráb",
+    nameLocative: "Pavlu Korábovi",
     photo: "/img/candidates/22.webp",
     age: 61,
     claim: "SNK Oušťáci nemění názory a priority. Proto mají moji podporu.",
@@ -201,6 +228,7 @@ export const candidates: Candidate[] = [
   {
     number: 23,
     name: "MUDr. Tereza Fišerová",
+    nameLocative: "Tereze Fišerové",
     photo: "/img/candidates/23.webp",
     age: 32,
     claim: "Ústí očima mladé rodiny.",
@@ -209,6 +237,7 @@ export const candidates: Candidate[] = [
   {
     number: 24,
     name: "Ing. Vlastimil Bartoš",
+    nameLocative: "Vlastimilu Bartošovi",
     photo: "/img/candidates/24.webp",
     age: 70,
     claim: "Nezůstat stranou a vždy jednat podle vlastního přesvědčení.",
@@ -217,6 +246,7 @@ export const candidates: Candidate[] = [
   {
     number: 25,
     name: "Bc. Anna Škopová",
+    nameLocative: "Anně Škopové",
     photo: "/img/candidates/25.webp",
     age: 76,
     claim: "Kvalitní služby v sociální oblasti dělají město městem.",
@@ -225,6 +255,7 @@ export const candidates: Candidate[] = [
   {
     number: 26,
     name: "Jitka Svobodová",
+    nameLocative: "Jitce Svobodové",
     photo: "/img/candidates/26.webp",
     age: 72,
     claim: "Každá investice vložená do sociálních služeb se vyplatí.",
@@ -233,6 +264,7 @@ export const candidates: Candidate[] = [
   {
     number: 27,
     name: "Jan Duffek",
+    nameLocative: "Janu Duffkovi",
     photo: "/img/candidates/27.webp",
     age: 43,
     claim:

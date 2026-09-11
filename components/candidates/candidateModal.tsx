@@ -1,6 +1,7 @@
 "use client";
 
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
+import { useEffect } from "react";
 import { BsXLg } from "react-icons/bs";
 
 import type { Candidate } from "@/data/candidates";
@@ -11,16 +12,29 @@ interface CandidateModalProps {
   onClose: () => void;
 }
 
+// Headless UI's Dialog closes both on Escape and on any outside click/tap
+// through the same `onClose` callback, and on some mobile devices a scroll
+// gesture that starts inside the modal gets misread as an outside tap –
+// closing the modal mid-scroll. To keep Escape and the explicit close
+// button working while dropping only the click/tap-elsewhere behaviour, we
+// give Dialog a no-op `onClose` and re-implement Escape ourselves.
 const CandidateModal: React.FC<CandidateModalProps> = ({
   candidate,
   onClose,
 }) => {
+  const isOpen = candidate !== null;
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
+
   return (
-    <Dialog
-      open={candidate !== null}
-      onClose={onClose}
-      className="relative z-60"
-    >
+    <Dialog open={isOpen} onClose={() => {}} className="relative z-60">
       <div
         className="fixed inset-0 bg-dark/60 backdrop-blur-sm"
         aria-hidden="true"
