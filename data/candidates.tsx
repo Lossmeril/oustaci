@@ -58,7 +58,7 @@ export const candidates: Candidate[] = [
     photo: "/img/candidates/04.webp",
     age: 63,
     claim:
-      "Jsem učitelka, organizátorka a člověk, kterému na Ústí nad Orlicí záleží.",
+      "Ústí je moje město. Chci, aby v něm lidé měli důvod zůstávat, tvořit a potkávat se.",
     cv: "Lenka Janyšová je učitelka a současná zastupitelka. Učí na místním gymnáziu a dlouhodobě se věnuje kulturnímu životu města jako vůdčí osobnost, organizátorka a produkční spolku Malá scéna. Dobře díky tomu ví, že když se lidé spojí a mají chuť něco dělat, mohou své okolí skutečně měnit k lepšímu.\n\nZkušenosti má i přímo z komunální politiky – působila v zastupitelstvu i radě města a řadu let vedla Kulturní komisi. Zná tak nejen kulturní prostředí města, ale také fungování samosprávy a potřeby jeho obyvatel.\n\nDo komunální politiky kandiduje proto, že nechce jen komentovat, co by se mělo změnit. Chce být u toho, když se změny skutečně dějí. Záleží jí na tom, aby Ústí nad Orlicí bylo bezpečným, čistým a příjemným městem pro život, které myslí na všechny generace. Za důležité považuje kvalitní veřejný prostor, podporu seniorů, otevřenou komunikaci radnice s občany a především další rozvoj kultury a komunitního života.\n\nLenka věří, že město netvoří jen radnice a její rozhodnutí, ale lidé, kteří v něm žijí, pracují, vychovávají děti, tvoří, podnikají a tráví svůj volný čas – a právě jejich hlas by měl být při rozhodování o budoucnosti města slyšet. Chce pro Ústí nad Orlicí pracovat stejně jako ve škole a v kultuře: s energií, odpovědností a chutí proměňovat dobré nápady v konkrétní výsledky.",
   },
   {
